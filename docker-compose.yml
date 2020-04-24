@@ -1,6 +1,6 @@
 version: '3.7'
 services:
-    Teamcity:
+    Server:
         image: jetbrains/teamcity-server
         volumes:
             - /host_mnt/d/Teamcity/Data:/data/teamcity_server/datadir
