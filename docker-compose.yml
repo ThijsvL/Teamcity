@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+    Teamcity:
+        image: jetbrains/teamcity-server
+        volumes:
+            - /host_mnt/d/Teamcity/Data:/data/teamcity_server/datadir
+            - /host_mnt/d/Teamcity/Logs:/opt/teamcity/logs
+            - /var/run/docker.sock:/var/run/docker.sock
+        ports:
+            - 8111:8111
+        environment: 
+            - TZ=Europe/Amsterdam
+        depends_on: 
+            - SQL
+    SQL:
+        image:  mysql:8.0
+        volumes: 
+            - /host_mnt/d/Teamcity/DB:/var/lib/mysql
+        environment: 
+            - "MYSQL_USER=teamcity"
+            - TZ=Europe/Amsterdam
+        env_file:
+            - ENV/.ENV_DB
+        secrets:
+            - MYSQL_USER
+            - MYSQL_PASSWORD
+secrets:
+  MYSQL_PASSWORD:
+    file: SECRETS/.DB_PASSWORD
+  MYSQL_ROOT_PASSWORD:
+    file: SECRETS/.DB_ROOT_PASSWORD
