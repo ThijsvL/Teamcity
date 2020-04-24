@@ -1,4 +1,4 @@
-version: '2.2'
+version: '3.7'
 services:
     Server:
         image: jetbrains/teamcity-server
@@ -24,13 +24,6 @@ services:
         secrets:
             - MYSQL_PASSWORD
             - MYSQL_ROOT_PASSWORD
-    Agent:
-        image:  jetbrains/teamcity-agent
-        volumes:
-            - /host_mnt/d/Teamcity/Agent:/data/teamcity_agent/conf
-            - /var/run/docker.sock:/var/run/docker.sock
-        environment:
-            - SERVER_URL="192.168.2.100:8111"
 secrets:
   MYSQL_PASSWORD:
     file: SECRETS/.DB_PASSWORD
