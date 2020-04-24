@@ -22,8 +22,8 @@ services:
         env_file:
             - ENV/.ENV_DB
         secrets:
-            - MYSQL_USER
             - MYSQL_PASSWORD
+            - MYSQL_ROOT_PASSWORD
 secrets:
   MYSQL_PASSWORD:
     file: SECRETS/.DB_PASSWORD
